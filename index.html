@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>J.O.V. Flipper – Jeugd Onderwatersport Sint-Michielsgestel</title>
+  <meta name="description" content="J.O.V. Flipper is de oudste zelfstandige jeugd-onderwatersportvereniging van Nederland. Training elke donderdag in het Sportiom in 's-Hertogenbosch. Lid worden vanaf 8 jaar!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue-dark:   #003a70;
+      --blue-mid:    #0057a8;
+      --blue-light:  #0080d4;
+      --blue-pale:   #e8f4ff;
+      --white:       #ffffff;
+      --text:        #1a2a3a;
+      --text-muted:  #4a6280;
+      --border:      #d0e4f5;
+      --rainbow: linear-gradient(90deg, #e84040, #f79020, #f5d000, #3ab54a, #1e8fe0, #7b3fa0);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== UTILITY ===== */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 50px; font-weight: 700;
+      font-size: 1rem; cursor: pointer; border: none; transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+    .btn-primary { background: var(--blue-light); color: white; }
+    .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,.7); }
+    .btn-outline:hover { background: rgba(255,255,255,.1); }
+    .section-tag {
+      display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--blue-light); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Nunito', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900; line-height: 1.15; color: var(--blue-dark); margin-bottom: 16px;
+    }
+    .section-sub { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; max-width: 600px; }
+    .rainbow-bar {
+      height: 5px; border-radius: 3px;
+      background: var(--rainbow); margin-bottom: 32px;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(0, 30, 60, 0.92); backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: background .3s;
+    }
+    nav.scrolled { background: rgba(0, 30, 60, 0.98); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; padding: 0 24px; max-width: 1160px; margin: 0 auto;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-logo-text { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.15rem; color: white; line-height: 1.1; }
+    .nav-logo-text span { font-size: .8rem; font-weight: 600; opacity: .75; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a {
+      padding: 8px 14px; border-radius: 8px; font-weight: 600; font-size: .9rem;
+      color: rgba(255,255,255,.85); transition: background .2s, color .2s;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,.1); color: white; }
+    .nav-cta { margin-left: 12px; padding: 9px 22px !important; font-size: .88rem !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: white; border-radius: 2px; transition: .3s; }
+    .mobile-menu {
+      display: none; flex-direction: column; background: rgba(0,30,60,.98);
+      padding: 16px 24px 24px; gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 12px 16px; color: rgba(255,255,255,.85); font-weight: 600;
+      border-radius: 8px; transition: background .2s;
+    }
+    .mobile-menu a:hover { background: rgba(255,255,255,.1); }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh; position: relative; display: flex; align-items: center;
+      background: linear-gradient(160deg, #001f40 0%, #003a70 45%, #005fa8 100%);
+      overflow: hidden;
+    }
+    .hero-bg-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: .18; mix-blend-mode: luminosity;
+    }
+    /* Animated bubbles */
+    .bubbles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .bubble {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,.06); animation: rise linear infinite;
+    }
+    @keyframes rise {
+      0% { transform: translateY(100vh) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
+    }
+    .wave-bottom {
+      position: absolute; bottom: -2px; left: 0; right: 0;
+    }
+    .hero-content {
+      position: relative; z-index: 2; padding: 120px 24px 80px;
+      max-width: 1160px; margin: 0 auto; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50px; padding: 6px 16px; font-size: .8rem; font-weight: 600;
+      color: rgba(255,255,255,.9); margin-bottom: 20px;
+    }
+    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #3ab54a; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+    .hero-title {
+      font-family: 'Nunito', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 900; line-height: 1.1; color: white; margin-bottom: 20px;
+    }
+    .hero-title .highlight {
+      background: var(--rainbow); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,.8); line-height: 1.7; margin-bottom: 32px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px; padding: 16px; text-align: center;
+    }
+    .stat-num { font-family: 'Nunito', sans-serif; font-size: 1.9rem; font-weight: 900; color: white; }
+    .stat-label { font-size: .75rem; color: rgba(255,255,255,.6); margin-top: 2px; }
+    .hero-image-wrap {
+      position: relative; display: flex; justify-content: center;
+    }
+    .hero-img-frame {
+      width: 100%; max-width: 480px; border-radius: 24px; overflow: hidden;
+      border: 3px solid rgba(255,255,255,.15); box-shadow: 0 32px 80px rgba(0,0,0,.4);
+      position: relative;
+    }
+    .hero-img-frame::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,30,60,.5) 100%);
+    }
+    .hero-img-frame img { width: 100%; height: 400px; object-fit: cover; }
+    .hero-img-badge {
+      position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
+      background: white; border-radius: 50px; padding: 8px 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.15); white-space: nowrap;
+      font-weight: 700; font-size: .85rem; color: var(--blue-dark);
+      display: flex; align-items: center; gap: 6px; z-index: 3;
+    }
+
+    /* ===== OVER ONS ===== */
+    #over-ons { padding: 96px 0; background: var(--white); }
+    .over-ons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .over-ons-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .over-ons-photos .photo { border-radius: 16px; overflow: hidden; }
+    .over-ons-photos .photo img { width: 100%; height: 200px; object-fit: cover; transition: transform .4s; }
+    .over-ons-photos .photo:hover img { transform: scale(1.04); }
+    .over-ons-photos .photo-main { grid-column: span 2; }
+    .over-ons-photos .photo-main img { height: 260px; }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin: 24px 0; }
+    .feature-list li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 16px; border-radius: 12px; background: var(--blue-pale);
+    }
+    .feature-icon {
+      width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+      background: var(--blue-light); color: white;
+    }
+    .feature-text strong { display: block; font-weight: 700; color: var(--blue-dark); font-size: .95rem; }
+    .feature-text span { font-size: .88rem; color: var(--text-muted); }
+    .idd-badge {
+      display: flex; align-items: center; gap: 12px; margin-top: 24px;
+      padding: 14px 20px; border: 2px solid var(--border); border-radius: 14px;
+      background: var(--blue-pale);
+    }
+    .idd-badge img { height: 44px; width: auto; }
+    .idd-badge p { font-size: .85rem; color: var(--text-muted); line-height: 1.5; }
+    .idd-badge p strong { color: var(--blue-dark); }
+
+    /* ===== TRAINING ===== */
+    #training {
+      padding: 80px 0; background: linear-gradient(135deg, var(--blue-dark) 0%, #005080 100%);
+      position: relative; overflow: hidden;
+    }
+    #training::before {
+      content: ''; position: absolute; top: -60%; left: -10%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: rgba(255,255,255,.04); pointer-events: none;
+    }
+    .training-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .training-card {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px; padding: 28px; transition: transform .3s, background .3s;
+    }
+    .training-card:hover { transform: translateY(-4px); background: rgba(255,255,255,.12); }
+    .training-card-icon {
+      width: 52px; height: 52px; border-radius: 14px; background: rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 16px;
+    }
+    .training-card h3 { font-family: 'Nunito', sans-serif; font-size: 1.1rem; font-weight: 800; color: white; margin-bottom: 8px; }
+    .training-card p { font-size: .9rem; color: rgba(255,255,255,.7); line-height: 1.6; }
+    .training-card .highlight-val {
+      font-size: 1.4rem; font-weight: 900; font-family: 'Nunito', sans-serif; color: white; display: block; margin: 8px 0 4px;
+    }
+    #training .section-tag { color: rgba(255,255,255,.6); }
+    #training .section-title { color: white; }
+    #training .section-sub { color: rgba(255,255,255,.7); }
+
+    /* ===== MEEDOEN ===== */
+    #meedoen { padding: 96px 0; background: var(--blue-pale); }
+    .meedoen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 48px; }
+    .meedoen-card {
+      background: white; border-radius: 24px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,60,120,.08); border: 1px solid var(--border);
+    }
+    .meedoen-card-img { height: 220px; overflow: hidden; }
+    .meedoen-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .meedoen-card:hover .meedoen-card-img img { transform: scale(1.04); }
+    .meedoen-card-body { padding: 28px; }
+    .meedoen-card-body h3 { font-family: 'Nunito', sans-serif; font-size: 1.35rem; font-weight: 900; color: var(--blue-dark); margin-bottom: 12px; }
+    .meedoen-card-body p { font-size: .9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+    .price-tag {
+      display: inline-flex; align-items: baseline; gap: 4px;
+      background: var(--blue-pale); border-radius: 10px; padding: 8px 14px; margin: 4px 4px 4px 0;
+    }
+    .price-tag .amount { font-size: 1.3rem; font-weight: 900; font-family: 'Nunito', sans-serif; color: var(--blue-dark); }
+    .price-tag .label { font-size: .75rem; color: var(--text-muted); }
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+    .steps li { display: flex; gap: 12px; align-items: flex-start; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--blue-light);
+      color: white; font-weight: 700; font-size: .8rem; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; margin-top: 1px;
+    }
+    .steps p { font-size: .88rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ===== OPLEIDINGEN ===== */
+    #opleidingen { padding: 96px 0; background: white; }
+    .opleidingen-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-bottom: 64px; }
+    .opleiding-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .opleiding-card {
+      border-radius: 20px; overflow: hidden; border: 2px solid var(--border);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .opleiding-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,60,120,.12); border-color: var(--blue-light); }
+    .opleiding-card-top {
+      padding: 24px; position: relative;
+    }
+    .opleiding-card-top::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--rainbow); }
+    .opleiding-level {
+      display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: .72rem;
+      font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .level-1 { background: #e8f5e9; color: #2e7d32; }
+    .level-2 { background: #e3f2fd; color: #1565c0; }
+    .level-3 { background: #fff3e0; color: #e65100; }
+    .level-4 { background: #f3e5f5; color: #6a1b9a; }
+    .opleiding-card-top h3 { font-family: 'Nunito', sans-serif; font-size: 1.15rem; font-weight: 900; color: var(--blue-dark); margin-bottom: 6px; }
+    .opleiding-card-top p { font-size: .85rem; color: var(--text-muted); line-height: 1.5; }
+    .opleiding-card-bottom { padding: 16px 24px; background: var(--blue-pale); display: flex; justify-content: space-between; align-items: center; }
+    .opleiding-card-bottom .age { font-size: .85rem; font-weight: 600; color: var(--blue-mid); }
+    .opleiding-card-bottom .price { font-size: .85rem; font-weight: 700; color: var(--blue-dark); }
+
+    /* ===== FOTOS ===== */
+    #fotos { padding: 96px 0; background: var(--blue-pale); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-top: 48px;
+    }
+    .gallery-item {
+      border-radius: 14px; overflow: hidden; position: relative; cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%; height: 220px; object-fit: cover;
+      transition: transform .4s;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item .overlay {
+      position: absolute; inset: 0; background: rgba(0,30,60,.5);
+      display: flex; align-items: flex-end; padding: 16px;
+      opacity: 0; transition: opacity .3s;
+    }
+    .gallery-item:hover .overlay { opacity: 1; }
+    .gallery-item .overlay p { color: white; font-size: .82rem; font-weight: 600; line-height: 1.4; }
+    .gallery-item.tall img { height: 452px; }
+    .gallery-item.wide { grid-column: span 2; }
+    .gallery-item.wide img { height: 220px; }
+    .instagram-cta {
+      margin-top: 40px; text-align: center; padding: 32px;
+      background: white; border-radius: 20px; border: 2px solid var(--border);
+    }
+    .instagram-cta p { font-size: 1rem; color: var(--text-muted); margin-bottom: 16px; }
+    .btn-instagram {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: .95rem;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: white; transition: transform .2s, box-shadow .2s;
+    }
+    .btn-instagram:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,40,130,.3); }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      padding: 96px 0;
+      background: linear-gradient(160deg, #001f40 0%, #003a70 100%);
+    }
+    #contact .section-tag { color: rgba(255,255,255,.6); }
+    #contact .section-title { color: white; }
+    #contact .section-sub { color: rgba(255,255,255,.65); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 48px; }
+    .contact-block {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px; padding: 28px;
+    }
+    .contact-block h3 { font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 800; color: white; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .contact-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+    .contact-row-icon { font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+    .contact-row-text strong { display: block; font-size: .8rem; font-weight: 600; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .06em; }
+    .contact-row-text span, .contact-row-text a { font-size: .95rem; color: rgba(255,255,255,.85); }
+    .contact-row-text a:hover { color: white; text-decoration: underline; }
+    .board-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .board-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .board-list li:last-child { border: none; }
+    .board-name { font-size: .9rem; color: rgba(255,255,255,.85); font-weight: 600; }
+    .board-role { font-size: .78rem; color: rgba(255,255,255,.45); }
+    .board-email a { font-size: .8rem; color: rgba(100,180,255,.8); }
+    .board-email a:hover { color: white; }
+    .social-links { display: flex; gap: 10px; margin-top: 20px; }
+    .social-btn {
+      display: flex; align-items: center; gap: 8px; padding: 10px 18px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50px; font-size: .85rem; font-weight: 600; color: rgba(255,255,255,.8);
+      transition: background .2s;
+    }
+    .social-btn:hover { background: rgba(255,255,255,.15); color: white; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #000e1c; padding: 28px 24px; text-align: center;
+      color: rgba(255,255,255,.35); font-size: .82rem;
+    }
+    footer .rainbow-bar { max-width: 200px; margin: 0 auto 16px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-image-wrap { display: none; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { max-width: 360px; margin: 40px auto 0; }
+      .over-ons-grid { grid-template-columns: 1fr; }
+      .training-grid { grid-template-columns: 1fr; }
+      .meedoen-grid { grid-template-columns: 1fr; }
+      .opleidingen-intro { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .gallery-item.tall img { height: 220px; }
+      .gallery-item.wide { grid-column: span 1; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .over-ons-photos { display: none; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .opleiding-cards { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr; }
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/Logo_Kleur.png" alt="J.O.V. Flipper logo" />
+      <div class="nav-logo-text">
+        J.O.V. Flipper
+        <span>Jeugd Onderwatersport</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#over-ons">Over ons</a></li>
+      <li><a href="#training">Training</a></li>
+      <li><a href="#opleidingen">Opleidingen</a></li>
+      <li><a href="#fotos">Foto's</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#meedoen" class="btn btn-primary nav-cta">Lid worden</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#over-ons" onclick="toggleMenu()">Over ons</a>
+    <a href="#training" onclick="toggleMenu()">Training</a>
+    <a href="#opleidingen" onclick="toggleMenu()">Opleidingen</a>
+    <a href="#fotos" onclick="toggleMenu()">Foto's</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+    <a href="#meedoen" onclick="toggleMenu()" style="background:var(--blue-light);color:white;margin-top:8px;text-align:center;">Lid worden →</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <img class="hero-bg-img"
+    src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2021/05/20-mei-zwembad-open-scaled.jpg"
+    alt="Duikers in het zwembad" />
+  <div class="bubbles" id="bubbles"></div>
+  <div class="hero-content container">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Trainingen elke donderdag
+      </div>
+      <h1 class="hero-title">
+        Ontdek de wereld<br />
+        <span class="highlight">onder water</span>
+      </h1>
+      <p class="hero-sub">
+        J.O.V. Flipper is de oudste zelfstandige jeugd-onderwatersportvereniging van Nederland.
+        Wij leren jou zwemmen met vinnen, snorkelen en duiken — in een gezellige club!
+      </p>
+      <div class="hero-actions">
+        <a href="#meedoen" class="btn btn-primary">Doe mee! →</a>
+        <a href="#over-ons" class="btn btn-outline">Meer over ons</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num">1972</div>
+          <div class="stat-label">Opgericht</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8+</div>
+          <div class="stat-label">Lid vanaf 8 jaar</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Jaar ervaring</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-img-frame">
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_0914-scaled-1.jpg"
+             alt="Jongeren duiken bij J.O.V. Flipper" />
+      </div>
+      <div class="hero-img-badge">
+        📍 Sportiom, 's-Hertogenbosch
+      </div>
+    </div>
+  </div>
+  <svg class="wave-bottom" viewBox="0 0 1440 72" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 72L60 60C120 48 240 24 360 18C480 12 600 24 720 30C840 36 960 36 1080 30C1200 24 1320 12 1380 6L1440 0V72H0Z" fill="white"/>
+  </svg>
+</section>
+
+<!-- ===== OVER ONS ===== -->
+<section id="over-ons">
+  <div class="container">
+    <div class="over-ons-grid">
+      <div class="over-ons-photos fade-up">
+        <div class="photo photo-main">
+          <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2021/05/20-mei-zwembad-open-scaled.jpg"
+               alt="Leden van J.O.V. Flipper in het zwembad" loading="lazy" />
+        </div>
+        <div class="photo">
+          <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_0916-scaled-1-1024x548.jpg"
+               alt="Training in het zwembad" loading="lazy" />
+        </div>
+        <div class="photo">
+          <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_5247-scaled-1-1024x602.jpg"
+               alt="Duiken met uitrusting" loading="lazy" />
+        </div>
+      </div>
+      <div class="fade-up">
+        <span class="section-tag">Over J.O.V. Flipper</span>
+        <div class="rainbow-bar" style="width:60px;"></div>
+        <h2 class="section-title">De oudste jeugd-<br/>duikvereniging van NL</h2>
+        <p class="section-sub">
+          J.O.V. Flipper werd opgericht op <strong>28 december 1972</strong> door een groep defensieduikers die het duiken bereikbaar wilden maken voor jongeren. Sindsdien is er veel veranderd — maar de passie voor het water is hetzelfde gebleven.
+        </p>
+        <ul class="feature-list">
+          <li>
+            <div class="feature-icon">🏊</div>
+            <div class="feature-text">
+              <strong>Wekelijkse training</strong>
+              <span>Elke donderdag 19:00–20:30 in het Sportiom in 's-Hertogenbosch</span>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon">👦</div>
+            <div class="feature-text">
+              <strong>Gezellige club</strong>
+              <span>~25 jeugdleden en 10 volwassenen (crew & bestuur) — iedereen kent iedereen</span>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon">🌊</div>
+            <div class="feature-text">
+              <strong>Van snorkel tot brevet</strong>
+              <span>We begeleiden jou van je eerste plons tot officieel gebrevetteerd duiker</span>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon">🎉</div>
+            <div class="feature-text">
+              <strong>Leuke activiteiten</strong>
+              <span>Buitenduiken, kompasloop, Sinterklaas, zomerkamp en meer!</span>
+            </div>
+          </li>
+        </ul>
+        <div class="idd-badge">
+          <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2022/05/logo-IDD-world-220px.png" alt="IDD logo" />
+          <p>Via <strong>IDD (Instructor Dive Development)</strong> — wereldwijd erkend, hoofdkantoor in Nederland — behaal je officiële duikbrevetten.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRAINING ===== -->
+<section id="training">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-tag">📅 Praktische info</span>
+      <h2 class="section-title">Training & locatie</h2>
+      <p class="section-sub">Alles wat je moet weten om gewoon langs te komen op donderdag.</p>
+    </div>
+    <div class="training-grid">
+      <div class="training-card fade-up">
+        <div class="training-card-icon">🗓️</div>
+        <h3>Trainingsdag</h3>
+        <span class="highlight-val">Donderdag</span>
+        <p>Elke week op donderdag, behalve tijdens schoolvakanties.</p>
+      </div>
+      <div class="training-card fade-up">
+        <div class="training-card-icon">⏰</div>
+        <h3>Tijd</h3>
+        <span class="highlight-val">19:00 – 20:30</span>
+        <p>Een anderhalf uur lang sporten, leren en plezier maken in het water.</p>
+      </div>
+      <div class="training-card fade-up">
+        <div class="training-card-icon">📍</div>
+        <h3>Locatie</h3>
+        <span class="highlight-val">Sportiom</span>
+        <p>Wedstrijdbad in 's-Hertogenbosch (Den Bosch) — professioneel bad met alle faciliteiten.</p>
+      </div>
+      <div class="training-card fade-up">
+        <div class="training-card-icon">🤿</div>
+        <h3>Wat heb je nodig?</h3>
+        <p style="margin-top:8px;">Een zwembroek of badpak is genoeg om te beginnen. Uitrusting (masker, vinnen, snorkel) leen je van de club.</p>
+      </div>
+      <div class="training-card fade-up">
+        <div class="training-card-icon">🌅</div>
+        <h3>Buitenduiken</h3>
+        <p style="margin-top:8px;">Naast het zwembad duiken we ook buiten — aan de Oosterplas en andere prachtige locaties.</p>
+      </div>
+      <div class="training-card fade-up" style="border: 1px solid rgba(58,181,74,.3); background: rgba(58,181,74,.08);">
+        <div class="training-card-icon" style="background: rgba(58,181,74,.2);">🤿</div>
+        <h3>Kennismakingslessen</h3>
+        <p style="margin-top:8px;">Probeer het uit met 2 kennismakingslessen op donderdag voor €25. Word je daarna lid? Dan betaal je maar €5 inschrijfkosten!</p>
+        <a href="#meedoen" class="btn btn-primary" style="margin-top:16px; font-size:.85rem; padding: 10px 20px;">Aanmelden →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEEDOEN ===== -->
+<section id="meedoen">
+  <div class="container">
+    <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="section-tag">Lid worden</span>
+      <div class="rainbow-bar" style="width:80px; margin: 0 auto 16px;"></div>
+      <h2 class="section-title">Kom bij onze club!</h2>
+      <p class="section-sub" style="margin: 0 auto;">
+        Wil jij leren duiken in een gezellige jeugdclub? Maak eerst kennis of schrijf je direct in — je bent welkom vanaf 8 jaar.
+      </p>
+    </div>
+    <div class="meedoen-grid">
+      <!-- Kennismakingsles -->
+      <div class="meedoen-card fade-up">
+        <div class="meedoen-card-img">
+          <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_0914-scaled-1.jpg"
+               alt="Kennismakingsles" loading="lazy" />
+        </div>
+        <div class="meedoen-card-body">
+          <h3>🤿 Kennismakingsles</h3>
+          <p>Zin om te ontdekken hoe leuk zwemmen met vinnen, duikbril en snorkel kan zijn? Probeer het uit op twee donderdagen!</p>
+          <ul class="steps">
+            <li>
+              <div class="step-num">1</div>
+              <p><strong>Les 1:</strong> Vinnen, duikbril en snorkel. Je leert de basis en ervaart het watergevoel.</p>
+            </li>
+            <li>
+              <div class="step-num">2</div>
+              <p><strong>Les 2:</strong> Na een korte instructie maak je een echte duik in het zwembad met volledige uitrusting.</p>
+            </li>
+            <li>
+              <div class="step-num">3</div>
+              <p><strong>Daarna:</strong> Word je lid binnen een maand? Dan betaal je slechts €5 inschrijfkosten!</p>
+            </li>
+          </ul>
+          <div>
+            <span class="price-tag"><span class="amount">€25</span> <span class="label">twee lessen</span></span>
+          </div>
+          <a href="mailto:secretaris@jovflipper.nl?subject=Aanmelding kennismakingsles" class="btn btn-primary" style="margin-top:20px; width:100%; justify-content:center;">
+            📧 Aanmelden via e-mail
+          </a>
+          <a href="https://www.aanbod.s-port.nl/activiteit/568519/duiken-en-onderwatersport" target="_blank" class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; color:var(--blue-dark); border-color:var(--border);">
+            Via Sjors Sportief →
+          </a>
+        </div>
+      </div>
+      <!-- Lid worden -->
+      <div class="meedoen-card fade-up">
+        <div class="meedoen-card-img">
+          <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_4428-scaled-2-1024x490.jpg"
+               alt="Lid worden" loading="lazy" />
+        </div>
+        <div class="meedoen-card-body">
+          <h3>🏅 Direct lid worden</h3>
+          <p>Weet je al dat je mee wilt doen? Schrijf je direct in als lid en begin zo snel mogelijk met trainen!</p>
+          <p>Lidmaatschap is mogelijk vanaf <strong>8 jaar</strong>. Onze trainingen zijn voor beginners én gevorderden.</p>
+          <div style="margin: 16px 0;">
+            <span class="price-tag"><span class="amount">€30</span> <span class="label">inschrijfkosten</span></span>
+            <span class="price-tag"><span class="amount">€98</span> <span class="label">per kwartaal</span></span>
+          </div>
+          <p style="font-size:.82rem; color:var(--text-muted); margin-bottom:16px;">
+            Contributie wordt per kwartaal geïncasseerd. Opzeggen kan na één jaar, per kwartaal. Kosten voor opleidingen en duikuitjes komen hier apart bij.
+          </p>
+          <a href="https://club.spond.com/landing/signup/jovflipper/form/18D7C23446E54DDBBB1FA3207AAF9305"
+             target="_blank" class="btn btn-primary" style="width:100%; justify-content:center;">
+            📋 Inschrijfformulier →
+          </a>
+          <a href="mailto:secretaris@jovflipper.nl?subject=Meer informatie lidmaatschap" class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; color:var(--blue-dark); border-color:var(--border);">
+            Stel een vraag →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OPLEIDINGEN ===== -->
+<section id="opleidingen">
+  <div class="container">
+    <div class="opleidingen-intro fade-up">
+      <div>
+        <span class="section-tag">Opleidingen & brevetten</span>
+        <div class="rainbow-bar" style="width:60px;"></div>
+        <h2 class="section-title">Groei van beginner tot duiker</h2>
+        <p class="section-sub">
+          Bij J.O.V. Flipper ga je stap voor stap verder. Van je eerste zwemles met vinnen tot internationale brevetten via IDD — alles leer je bij onze eigen instructeurs.
+        </p>
+        <p class="section-sub" style="margin-top:14px;">
+          De cursus bestaat uit een <strong>theorie-deel</strong> (~10 lessen) én een <strong>praktijk-deel</strong> in het zwembad (~10 lessen) plus twee dagen in buitenwater. Je ontvangt een officieel IDD-brevet-pasje.
+        </p>
+      </div>
+      <div>
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_7081-scaled-1-1024x631.jpg"
+             alt="Duikles in het zwembad" style="border-radius:20px; width:100%; object-fit:cover; height:320px;" loading="lazy" />
+      </div>
+    </div>
+    <div class="opleiding-cards">
+      <div class="opleiding-card fade-up">
+        <div class="opleiding-card-top">
+          <span class="opleiding-level level-1">Instap</span>
+          <h3>Vinnen &amp; snorkelen</h3>
+          <p>Leer soepel bewegen in het water met vinnen, duikbril en snorkel. Basis conditie, hand-symbolen en eerste duikjes in het zwembad.</p>
+        </div>
+        <div class="opleiding-card-bottom">
+          <span class="age">👦 Vanaf 8 jaar</span>
+          <span class="price">Incl. lidmaatschap</span>
+        </div>
+      </div>
+      <div class="opleiding-card fade-up">
+        <div class="opleiding-card-top">
+          <span class="opleiding-level level-2">Brevet 1</span>
+          <h3>Junior OpenWater Diver</h3>
+          <p>Duik tot 12 meter diep! Het officiële IDD Junior brevet voor gevorderde zwemmers die klaar zijn voor de echte duiksport.</p>
+        </div>
+        <div class="opleiding-card-bottom">
+          <span class="age">👦 Vanaf 10 jaar</span>
+          <span class="price">€ 260</span>
+        </div>
+      </div>
+      <div class="opleiding-card fade-up">
+        <div class="opleiding-card-top">
+          <span class="opleiding-level level-3">Brevet 2</span>
+          <h3>OpenWater Diver</h3>
+          <p>Het volledige OpenWater brevet voor tieners. Duik samen met een andere gebrevetteerde duiker op alle mooie locaties!</p>
+        </div>
+        <div class="opleiding-card-bottom">
+          <span class="age">👦 Vanaf 14 jaar</span>
+          <span class="price">€ 260</span>
+        </div>
+      </div>
+      <div class="opleiding-card fade-up">
+        <div class="opleiding-card-top">
+          <span class="opleiding-level level-4">Gevorderd</span>
+          <h3>Rescue Diver &amp; meer</h3>
+          <p>Rescue Diver, Divemaster en Instructeur — plus speciale brevetten voor nachtduiken en helmduiken.</p>
+        </div>
+        <div class="opleiding-card-bottom">
+          <span class="age">🎓 Gevorderden</span>
+          <span class="price">Op aanvraag</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOTO'S ===== -->
+<section id="fotos">
+  <div class="container">
+    <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="section-tag">Activiteiten & Foto's</span>
+      <div class="rainbow-bar" style="width:80px; margin:0 auto 16px;"></div>
+      <h2 class="section-title">Actie in en om het water</h2>
+      <p class="section-sub" style="margin:0 auto;">
+        Van zwembadtraining tot buitenduiken, kompasloop, helmduiken en zomerkamp — bij Flipper is er altijd iets te beleven.
+      </p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide fade-up">
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2021/05/20-mei-zwembad-open-scaled.jpg"
+             alt="20 mei 2021 – Zwembaden open, direct 14 kinderen onder water!" loading="lazy" />
+        <div class="overlay"><p>20 mei 2021 – Zwembaden open, direct 14 kinderen onder water!</p></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2021/05/cropped-20-mei-zwembad-open_2-scaled-1.jpg"
+             alt="Open Water Divers klaar voor actie" loading="lazy" />
+        <div class="overlay"><p>Open Water Divers klaar voor actie</p></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_0916-scaled-1-1024x548.jpg"
+             alt="Training in het zwembad" loading="lazy" />
+        <div class="overlay"><p>Training in het zwembad</p></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_5247-scaled-1-1024x602.jpg"
+             alt="Opleiding met volledige uitrusting" loading="lazy" />
+        <div class="overlay"><p>Opleiding met volledige uitrusting</p></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2021/05/15-mei-kompasloop.jpg"
+             alt="Kompasloop in het bos bij Vught" loading="lazy" />
+        <div class="overlay"><p>Kompasloop in het bos bij Vught</p></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2021/05/16-april-Oosterplas-scaled.jpg"
+             alt="Teambuilding aan de Oosterplas" loading="lazy" />
+        <div class="overlay"><p>Teambuilding aan de Oosterplas</p></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_7081-scaled-1-1024x631.jpg"
+             alt="Rescue Diver examen" loading="lazy" />
+        <div class="overlay"><p>Rescue Diver training</p></div>
+      </div>
+      <div class="gallery-item wide fade-up">
+        <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-P1060760-scaled-1-768x405.jpg"
+             alt="Helmduiken aan de Oosterplas" loading="lazy" />
+        <div class="overlay"><p>Helmduiken aan de Oosterplas — 15 kg op je hoofd!</p></div>
+      </div>
+    </div>
+    <div class="instagram-cta fade-up">
+      <p>📸 Meer foto's en video's van onze activiteiten? Volg ons op Instagram!</p>
+      <a href="https://www.instagram.com/jovflipper" target="_blank" class="btn-instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        @jovflipper
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-tag">📬 Neem contact op</span>
+      <h2 class="section-title">We horen graag van je!</h2>
+      <p class="section-sub">Vragen over lidmaatschap, trainingen of opleidingen? Stuur ons een mail of kom gewoon langs op donderdag.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-block fade-up">
+        <h3>📌 Contactgegevens</h3>
+        <div class="contact-row">
+          <span class="contact-row-icon">✉️</span>
+          <div class="contact-row-text">
+            <strong>E-mail</strong>
+            <a href="mailto:secretaris@jovflipper.nl">secretaris@jovflipper.nl</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-row-icon">📍</span>
+          <div class="contact-row-text">
+            <strong>Adres</strong>
+            <span>Rozemarijnlaan 38<br />5271 NK Sint-Michielsgestel</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-row-icon">🏊</span>
+          <div class="contact-row-text">
+            <strong>Trainingslocatie</strong>
+            <span>Sportiom, 's-Hertogenbosch<br />Elke donderdag 19:00–20:30</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-row-icon">🏦</span>
+          <div class="contact-row-text">
+            <strong>IBAN</strong>
+            <span>NL42 RABO 0106 9099 83</span>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://www.facebook.com/jovflipper" target="_blank" class="social-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+          <a href="https://www.instagram.com/jovflipper" target="_blank" class="social-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram
+          </a>
+        </div>
+      </div>
+      <div class="contact-block fade-up">
+        <h3>👥 Het bestuur</h3>
+        <ul class="board-list">
+          <li>
+            <div><div class="board-name">Arnold Hofland</div><div class="board-role">Voorzitter</div></div>
+            <div class="board-email"><a href="mailto:voorzitter@jovflipper.nl">voorzitter@jovflipper.nl</a></div>
+          </li>
+          <li>
+            <div><div class="board-name">Heleen Prinsen</div><div class="board-role">Secretaris</div></div>
+            <div class="board-email"><a href="mailto:secretaris@jovflipper.nl">secretaris@jovflipper.nl</a></div>
+          </li>
+          <li>
+            <div><div class="board-name">Rein Hochstenbach</div><div class="board-role">Penningmeester</div></div>
+            <div class="board-email"><a href="mailto:penningmeester@jovflipper.nl">penningmeester@jovflipper.nl</a></div>
+          </li>
+          <li>
+            <div><div class="board-name">Gregory Vis</div><div class="board-role">Bestuurslid duikzaken</div></div>
+            <div class="board-email"><a href="mailto:gregory@jovflipper.nl">gregory@jovflipper.nl</a></div>
+          </li>
+          <li>
+            <div><div class="board-name">Linda Hofland</div><div class="board-role">Vertrouwenspersoon</div></div>
+            <div class="board-email"><span style="font-size:.78rem; color:rgba(255,255,255,.4);">06-38535025</span></div>
+          </li>
+        </ul>
+        <div style="margin-top:20px; padding:16px; background:rgba(255,255,255,.05); border-radius:12px; font-size:.85rem; color:rgba(255,255,255,.55);">
+          KvK: 40215689 &nbsp;·&nbsp; BIC: RABONL2U
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="rainbow-bar"></div>
+  <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/Logo_Kleur.png"
+       alt="J.O.V. Flipper" style="height:40px; margin:0 auto 12px;" />
+  <p>© 2026 J.O.V. Flipper – Jeugd Onderwatersport Vereniging</p>
+  <p style="margin-top:6px;">Opgericht 28 december 1972 · Training in 's-Hertogenbosch · <a href="mailto:secretaris@jovflipper.nl" style="color:rgba(255,255,255,.4); text-decoration:underline;">secretaris@jovflipper.nl</a></p>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  // Bubbles
+  (function createBubbles() {
+    const container = document.getElementById('bubbles');
+    const sizes = [20, 30, 45, 60, 80, 100];
+    for (let i = 0; i < 18; i++) {
+      const b = document.createElement('div');
+      b.className = 'bubble';
+      const size = sizes[Math.floor(Math.random() * sizes.length)];
+      b.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random() * 100}%;
+        animation-duration:${8 + Math.random() * 12}s;
+        animation-delay:${Math.random() * 10}s;
+      `;
+      container.appendChild(b);
+    }
+  })();
+
+  // Scroll animations
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
