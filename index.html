@@ -344,8 +344,9 @@
     .contact-row-text span, .contact-row-text a { font-size: .95rem; color: rgba(255,255,255,.85); }
     .contact-row-text a:hover { color: white; text-decoration: underline; }
     .board-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .board-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .board-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.08); gap: 12px; }
     .board-list li:last-child { border: none; }
+    .board-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(255,255,255,.2); }
     .board-name { font-size: .9rem; color: rgba(255,255,255,.85); font-weight: 600; }
     .board-role { font-size: .78rem; color: rgba(255,255,255,.45); }
     .board-email a { font-size: .8rem; color: rgba(100,180,255,.8); }
@@ -859,23 +860,28 @@
         <h3>👥 Het bestuur</h3>
         <ul class="board-list">
           <li>
-            <div><div class="board-name">Arnold Hofland</div><div class="board-role">Voorzitter</div></div>
+            <img class="board-avatar" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/photo229.jpg" alt="Arnold Hofland" loading="lazy" />
+            <div style="flex:1"><div class="board-name">Arnold Hofland</div><div class="board-role">Voorzitter</div></div>
             <div class="board-email"><a href="mailto:voorzitter@jovflipper.nl">voorzitter@jovflipper.nl</a></div>
           </li>
           <li>
-            <div><div class="board-name">Heleen Prinsen</div><div class="board-role">Secretaris</div></div>
+            <img class="board-avatar" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2026/05/cropped-Heleen-150x150.jpg" alt="Heleen Prinsen" loading="lazy" />
+            <div style="flex:1"><div class="board-name">Heleen Prinsen</div><div class="board-role">Secretaris</div></div>
             <div class="board-email"><a href="mailto:secretaris@jovflipper.nl">secretaris@jovflipper.nl</a></div>
           </li>
           <li>
-            <div><div class="board-name">Rein Hochstenbach</div><div class="board-role">Penningmeester</div></div>
+            <img class="board-avatar" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2026/05/cropped-Rein-Hochstenbach-150x150.jpeg" alt="Rein Hochstenbach" loading="lazy" />
+            <div style="flex:1"><div class="board-name">Rein Hochstenbach</div><div class="board-role">Penningmeester</div></div>
             <div class="board-email"><a href="mailto:penningmeester@jovflipper.nl">penningmeester@jovflipper.nl</a></div>
           </li>
           <li>
-            <div><div class="board-name">Gregory Vis</div><div class="board-role">Bestuurslid duikzaken</div></div>
+            <img class="board-avatar" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/photo56.jpg" alt="Gregory Vis" loading="lazy" />
+            <div style="flex:1"><div class="board-name">Gregory Vis</div><div class="board-role">Bestuurslid duikzaken</div></div>
             <div class="board-email"><a href="mailto:gregory@jovflipper.nl">gregory@jovflipper.nl</a></div>
           </li>
           <li>
-            <div><div class="board-name">Linda Hofland</div><div class="board-role">Vertrouwenspersoon</div></div>
+            <img class="board-avatar" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2026/05/cropped-Linda-1-150x150.jpg" alt="Linda Hofland" loading="lazy" />
+            <div style="flex:1"><div class="board-name">Linda Hofland</div><div class="board-role">Vertrouwenspersoon</div></div>
             <div class="board-email"><span style="font-size:.78rem; color:rgba(255,255,255,.4);">06-38535025</span></div>
           </li>
         </ul>
