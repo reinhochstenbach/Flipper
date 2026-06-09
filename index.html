@@ -233,7 +233,7 @@
 
     /* ===== MEEDOEN ===== */
     #meedoen { padding: 96px 0; background: var(--blue-pale); }
-    .meedoen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 48px; }
+    .meedoen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; align-items: start; margin-top: 48px; }
     .meedoen-card {
       background: white; border-radius: 24px; overflow: hidden;
       box-shadow: 0 4px 24px rgba(0,60,120,.08); border: 1px solid var(--border);
@@ -384,8 +384,6 @@
       .over-ons-grid { grid-template-columns: 1fr; }
       .training-grid { grid-template-columns: 1fr; }
       .meedoen-grid { grid-template-columns: 1fr; }
-      .meedoen-grid .meedoen-card[style*="span 2"] { grid-column: span 1; flex-direction: column; }
-      .meedoen-grid .meedoen-card[style*="span 2"] .meedoen-card-img { width: 100%; min-height: 200px; }
       .opleidingen-intro { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2,1fr); }
       .gallery-item.tall img { height: 220px; }
@@ -590,63 +588,93 @@
         <span class="highlight-val">Sportiom</span>
         <p>Wedstrijdbad in 's-Hertogenbosch (Den Bosch) — professioneel bad met alle faciliteiten.</p>
       </div>
-      <div class="training-card fade-up">
-        <div class="training-card-icon">🤿</div>
-        <h3>Wat heb je nodig?</h3>
-        <p style="margin-top:8px;">Een zwembroek of badpak is genoeg om te beginnen. Tijdens de kennismakingslessen leen je uitrusting van de club. Daarna schaf je zelf masker, vinnen, snorkel en loodgordel aan.</p>
-        <button onclick="toggleUitrusting()" class="btn btn-outline" id="uitrusting-btn" style="margin-top:16px; font-size:.85rem; padding:10px 20px; background:transparent; cursor:pointer;">Bekijk de uitrusting ↓</button>
-        <div id="uitrusting-panel" style="display:none; margin-top:16px; border-top:1px solid rgba(255,255,255,.15); padding-top:16px;">
-          <p style="font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:10px;">Basisuitrusting</p>
-          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">🥽</span>
-              <div><strong style="color:white; font-size:.88rem;">Duikbril</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Om onder water te kunnen kijken. Kies er een met klipjes zodat de snorkel makkelijk los- en vastgemaakt kan worden.</span></div>
-            </div>
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">🌬️</span>
-              <div><strong style="color:white; font-size:.88rem;">Snorkel</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Om te ademen aan de oppervlakte. Moet afneembaar zijn van de bril.</span></div>
-            </div>
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">🏋️</span>
-              <div><strong style="color:white; font-size:.88rem;">Loodgordel</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Voorkomt dat je te veel drijft. Onze instructeurs adviseren je graag bij de keuze.</span></div>
-            </div>
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">🦶</span>
-              <div><strong style="color:white; font-size:.88rem;">Vinnen</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Essentieel voor efficiënt bewegen onder water. Kies een paar dat goed en comfortabel past.</span></div>
+      <div class="training-card fade-up" style="grid-column: 1 / -1;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div class="training-card-icon">🤿</div>
+            <div>
+              <h3 style="margin:0;">Wat heb je nodig?</h3>
+              <p style="margin-top:6px;">Een zwembroek of badpak is genoeg om te beginnen. Tijdens de proeflessen leen je uitrusting van de club. Daarna schaf je zelf masker, vinnen, snorkel en loodgordel aan.</p>
             </div>
           </div>
-          <p style="font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:10px;">Buitenwater uitrusting</p>
-          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">🤿</span>
-              <div><strong style="color:white; font-size:.88rem;">Duikpak (wetsuit)</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Beschermt tegen het koudere buitenwater. Alle maten aanwezig bij de vereniging.</span></div>
+          <button onclick="toggleUitrusting()" class="btn btn-outline" id="uitrusting-btn" style="font-size:.85rem; padding:10px 20px; background:transparent; cursor:pointer; white-space:nowrap;">Bekijk de uitrusting ↓</button>
+        </div>
+        <div id="uitrusting-panel" style="display:none; margin-top:24px; border-top:1px solid rgba(255,255,255,.15); padding-top:24px;">
+          <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:32px;">
+            <!-- Basisuitrusting -->
+            <div>
+              <img src="https://wsrv.nl/?url=nieuw.jovflipper.nl/wp-content/uploads/2020/07/Bril-snorkel-lood-vinnen-scaled.jpg"
+                   alt="Basisuitrusting" loading="lazy"
+                   style="width:100%; border-radius:12px; object-fit:cover; height:180px; margin-bottom:16px;" />
+              <p style="font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:12px;">Basisuitrusting</p>
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🥽</span>
+                  <div><strong style="color:white; font-size:.88rem;">Duikbril</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Om onder water te kunnen kijken. Kies er een met klipjes voor de snorkel.</span></div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🌬️</span>
+                  <div><strong style="color:white; font-size:.88rem;">Snorkel</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Ademen aan de oppervlakte. Moet afneembaar zijn van de bril.</span></div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🏋️</span>
+                  <div><strong style="color:white; font-size:.88rem;">Loodgordel</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Voorkomt dat je te veel drijft. Instructeurs adviseren je graag.</span></div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🦶</span>
+                  <div><strong style="color:white; font-size:.88rem;">Vinnen</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Essentieel voor efficiënt bewegen. Kies een paar dat goed past.</span></div>
+                </div>
+              </div>
             </div>
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">🧤</span>
-              <div><strong style="color:white; font-size:.88rem;">Schoenen &amp; handschoenen</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Bescherming bij buitenduiken.</span></div>
+            <!-- Buitenwater -->
+            <div>
+              <img src="https://wsrv.nl/?url=nieuw.jovflipper.nl/wp-content/uploads/2020/07/Set-scaled.jpg"
+                   alt="Buitenwater uitrusting" loading="lazy"
+                   style="width:100%; border-radius:12px; object-fit:cover; height:180px; margin-bottom:16px;" />
+              <p style="font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:12px;">Buitenwater uitrusting</p>
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🤿</span>
+                  <div><strong style="color:white; font-size:.88rem;">Duikpak (wetsuit)</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Beschermt tegen koud buitenwater. Alle maten aanwezig bij de club.</span></div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🧤</span>
+                  <div><strong style="color:white; font-size:.88rem;">Schoenen &amp; handschoenen</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Bescherming bij buitenduiken.</span></div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🎽</span>
+                  <div><strong style="color:white; font-size:.88rem;">Trimvest</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Regelt je drijfvermogen onder water. Alle maten bij de club aanwezig.</span></div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🫧</span>
+                  <div><strong style="color:white; font-size:.88rem;">Duikcilinder &amp; automatenset</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Voorziet je van lucht. Vulling wordt door de vereniging verzorgd.</span></div>
+                </div>
+              </div>
             </div>
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">🎽</span>
-              <div><strong style="color:white; font-size:.88rem;">Trimvest</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Hiermee regel je je drijfvermogen onder water. Alle maten bij de club aanwezig.</span></div>
-            </div>
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">🫧</span>
-              <div><strong style="color:white; font-size:.88rem;">Duikcilinder &amp; automatenset</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Voorziet je van lucht onder water. Vulling wordt door de vereniging verzorgd.</span></div>
-            </div>
-          </div>
-          <p style="font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:10px;">Geavanceerd</p>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">⌚</span>
-              <div><strong style="color:white; font-size:.88rem;">Duikcomputer</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Registreert duur en diepte van je duiken.</span></div>
-            </div>
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">🧭</span>
-              <div><strong style="color:white; font-size:.88rem;">Kompas</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Voor navigatie onder water.</span></div>
-            </div>
-            <div style="display:flex; gap:10px; align-items:flex-start;">
-              <span style="font-size:1.1rem;">📷</span>
-              <div><strong style="color:white; font-size:.88rem;">Onderwatercamera</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Leg planten en dieren onder water vast.</span></div>
+            <!-- Geavanceerd -->
+            <div>
+              <img src="https://wsrv.nl/?url=nieuw.jovflipper.nl/wp-content/uploads/2020/07/Extras-scaled.jpg"
+                   alt="Geavanceerde uitrusting" loading="lazy"
+                   style="width:100%; border-radius:12px; object-fit:cover; height:180px; margin-bottom:16px;" />
+              <p style="font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:12px;">Geavanceerd</p>
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>⌚</span>
+                  <div><strong style="color:white; font-size:.88rem;">Duikcomputer</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Registreert duur en diepte van je duiken.</span></div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🧭</span>
+                  <div><strong style="color:white; font-size:.88rem;">Kompas</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Voor navigatie onder water.</span></div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>🔪</span>
+                  <div><strong style="color:white; font-size:.88rem;">Duikmes</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Praktisch gereedschap voor gevorderde duikers.</span></div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:flex-start;">
+                  <span>📷</span>
+                  <div><strong style="color:white; font-size:.88rem;">Onderwatercamera</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Leg planten en dieren onder water vast.</span></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -678,14 +706,14 @@
       </p>
     </div>
     <div class="meedoen-grid">
-      <!-- Kennismakingsles -->
+      <!-- Proeflessen -->
       <div class="meedoen-card fade-up">
         <div class="meedoen-card-img">
           <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_0914-scaled-1.jpg"
-               alt="Kennismakingsles" loading="lazy" />
+               alt="Proeflessen" loading="lazy" />
         </div>
         <div class="meedoen-card-body">
-          <h3>🤿 Kennismakingsles</h3>
+          <h3>🤿 Proeflessen</h3>
           <p>Zin om te ontdekken hoe leuk zwemmen met vinnen, duikbril en snorkel kan zijn? Probeer het uit op twee donderdagen!</p>
           <ul class="steps">
             <li>
@@ -704,11 +732,8 @@
           <div>
             <span class="price-tag"><span class="amount">€25</span> <span class="label">twee lessen</span></span>
           </div>
-          <a href="mailto:secretaris@jovflipper.nl?subject=Aanmelding kennismakingsles" class="btn btn-primary" style="margin-top:20px; width:100%; justify-content:center;">
+          <a href="mailto:secretaris@jovflipper.nl?subject=Aanmelding proeflessen" class="btn btn-primary" style="margin-top:20px; width:100%; justify-content:center;">
             📧 Aanmelden via e-mail
-          </a>
-          <a href="https://www.aanbod.s-port.nl/activiteit/568519/duiken-en-onderwatersport" target="_blank" class="btn btn-outline" style="margin-top:10px; width:100%; justify-content:center; color:var(--blue-dark); border-color:var(--border);">
-            Via Sjors Sportief →
           </a>
         </div>
       </div>
@@ -739,16 +764,16 @@
         </div>
       </div>
       <!-- Sjors Sportief -->
-      <div class="meedoen-card fade-up" style="grid-column: span 2; display: flex; flex-direction: row; align-items: center; gap: 0;">
-        <div class="meedoen-card-img" style="height: 100%; min-height: 160px; width: 280px; flex-shrink: 0;">
+      <div class="meedoen-card fade-up">
+        <div class="meedoen-card-img">
           <img src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/07/cropped-IMG_4428-scaled-2-1024x490.jpg"
-               alt="Sjors Sportief" loading="lazy" style="height: 100%; min-height: 160px;" />
+               alt="Sjors Sportief" loading="lazy" />
         </div>
-        <div class="meedoen-card-body" style="flex: 1;">
+        <div class="meedoen-card-body">
           <h3>🟠 Sjors Sportief</h3>
           <p>Via <strong>Sjors Sportief</strong> kunnen kinderen van 6 t/m 12 jaar gratis of met korting kennismaken met sport — ook bij J.O.V. Flipper! Vraag een Sjors Sportief-voucher aan bij je gemeente en meld je aan via onderstaande link.</p>
           <a href="https://www.aanbod.s-port.nl/aanbieder/1752/jeugd-onderwatersport-vereniging-flipper"
-             target="_blank" class="btn btn-primary" style="margin-top: 16px;">
+             target="_blank" class="btn btn-primary" style="margin-top:16px; width:100%; justify-content:center;">
             Bekijk ons aanbod op Sjors Sportief →
           </a>
         </div>
