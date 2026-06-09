@@ -286,6 +286,14 @@
     .opleiding-card-bottom .age { font-size: .85rem; font-weight: 600; color: var(--blue-mid); }
     .opleiding-card-bottom .price { font-size: .85rem; font-weight: 700; color: var(--blue-dark); }
 
+    /* ===== TEAM ===== */
+    #team { padding: 96px 0; background: white; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 28px; margin-top: 48px; }
+    .team-card { text-align: center; }
+    .team-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; border: 3px solid var(--border); display: block; }
+    .team-name { font-weight: 700; font-size: .9rem; color: var(--blue-dark); }
+    .team-role { font-size: .78rem; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
+
     /* ===== FOTOS ===== */
     #fotos { padding: 96px 0; background: var(--blue-pale); }
     .gallery-grid {
@@ -417,6 +425,7 @@
       <li><a href="#over-ons">Over ons</a></li>
       <li><a href="#training">Training</a></li>
       <li><a href="#opleidingen">Opleidingen</a></li>
+      <li><a href="#team">Team</a></li>
       <li><a href="#fotos">Foto's</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#meedoen" class="btn btn-primary nav-cta">Lid worden</a></li>
@@ -429,6 +438,7 @@
     <a href="#over-ons" onclick="toggleMenu()">Over ons</a>
     <a href="#training" onclick="toggleMenu()">Training</a>
     <a href="#opleidingen" onclick="toggleMenu()">Opleidingen</a>
+    <a href="#team" onclick="toggleMenu()">Team</a>
     <a href="#fotos" onclick="toggleMenu()">Foto's</a>
     <a href="#contact" onclick="toggleMenu()">Contact</a>
     <a href="#meedoen" onclick="toggleMenu()" style="background:var(--blue-light);color:white;margin-top:8px;text-align:center;">Lid worden →</a>
@@ -755,6 +765,92 @@
           <span class="age">🎓 Gevorderden</span>
           <span class="price">Op aanvraag</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section id="team">
+  <div class="container">
+    <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="section-tag">Wie zijn wij</span>
+      <div class="rainbow-bar" style="width:80px; margin:0 auto 16px;"></div>
+      <h2 class="section-title">Ons team</h2>
+      <p class="section-sub" style="margin:0 auto;">
+        J.O.V. Flipper draait volledig op vrijwilligers — enthousiaste instructeurs, trainers en bestuursleden die met passie voor het duiken klaarstaan voor onze leden.
+      </p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/photo229.jpg" alt="Arnold Hofland" loading="lazy" />
+        <div class="team-name">Arnold Hofland</div>
+        <div class="team-role">Voorzitter</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2026/05/cropped-Heleen-150x150.jpg" alt="Heleen Prinsen" loading="lazy" />
+        <div class="team-name">Heleen Prinsen</div>
+        <div class="team-role">Secretaris</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2026/05/cropped-Rein-Hochstenbach-150x150.jpeg" alt="Rein Hochstenbach" loading="lazy" />
+        <div class="team-name">Rein Hochstenbach</div>
+        <div class="team-role">Penningmeester</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/photo56.jpg" alt="Gregory Vis" loading="lazy" />
+        <div class="team-name">Gregory Vis</div>
+        <div class="team-role">Instructeur &amp; Bestuurslid duikzaken</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2026/05/cropped-Linda-1-150x150.jpg" alt="Linda Hofland" loading="lazy" />
+        <div class="team-name">Linda Hofland</div>
+        <div class="team-role">Vertrouwenspersoon</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/08/cropped-foto-Albert-150x150.jpg" alt="Albert Hageman" loading="lazy" />
+        <div class="team-name">Albert Hageman</div>
+        <div class="team-role">Instructeur &amp; Materiaalmeester</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/photo14.jpg" alt="Jasper van den Bosch" loading="lazy" />
+        <div class="team-name">Jasper van den Bosch</div>
+        <div class="team-role">Instructeur</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/photo33.jpg" alt="Rene Hoornweg" loading="lazy" />
+        <div class="team-name">Rene Hoornweg</div>
+        <div class="team-role">Instructeur</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/photo220.jpg" alt="Ton Pasnagel" loading="lazy" />
+        <div class="team-name">Ton Pasnagel</div>
+        <div class="team-role">Instructeur</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/photo186.jpg" alt="Peter Mulder" loading="lazy" />
+        <div class="team-name">Peter Mulder</div>
+        <div class="team-role">Dive Master &amp; Zwemtrainer</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2026/05/cropped-Danny-1-150x150.jpeg" alt="Danny Swarts" loading="lazy" />
+        <div class="team-name">Danny Swarts</div>
+        <div class="team-role">Zwemtrainer</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2025/02/cropped-Afbeelding-van-WhatsApp-op-2025-02-21-om-13.05.33_2a4c5e3a-150x150.jpg" alt="Margje Geerts" loading="lazy" />
+        <div class="team-name">Margje Geerts</div>
+        <div class="team-role">Zwemtrainster</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/photo22.jpg" alt="Joeri Exterkate" loading="lazy" />
+        <div class="team-name">Joeri Exterkate</div>
+        <div class="team-role">Zwemtrainer</div>
+      </div>
+      <div class="team-card fade-up">
+        <img class="team-photo" src="https://wsrv.nl/?url=www.jovflipper.nl/wp-content/uploads/2020/06/cropped-defaultphoto.jpg" alt="Sebastiaan Swanenberg" loading="lazy" />
+        <div class="team-name">Sebastiaan Swanenberg</div>
+        <div class="team-role">Dive Master</div>
       </div>
     </div>
   </div>
