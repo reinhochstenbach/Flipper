@@ -268,10 +268,11 @@
     .opleiding-card {
       border-radius: 20px; overflow: hidden; border: 2px solid var(--border);
       transition: transform .3s, box-shadow .3s, border-color .3s;
+      display: flex; flex-direction: column;
     }
     .opleiding-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,60,120,.12); border-color: var(--blue-light); }
     .opleiding-card-top {
-      padding: 24px; position: relative;
+      padding: 24px; position: relative; flex: 1;
     }
     .opleiding-card-top::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--rainbow); }
     .opleiding-level {
