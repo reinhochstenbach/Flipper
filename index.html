@@ -594,7 +594,62 @@
         <div class="training-card-icon">🤿</div>
         <h3>Wat heb je nodig?</h3>
         <p style="margin-top:8px;">Een zwembroek of badpak is genoeg om te beginnen. Tijdens de kennismakingslessen leen je uitrusting van de club. Daarna schaf je zelf masker, vinnen, snorkel en loodgordel aan.</p>
-        <a href="https://www.jovflipper.nl/uitrusting/" target="_blank" class="btn btn-outline" style="margin-top:16px; font-size:.85rem; padding:10px 20px;">Meer info over uitrusting →</a>
+        <button onclick="toggleUitrusting()" class="btn btn-outline" id="uitrusting-btn" style="margin-top:16px; font-size:.85rem; padding:10px 20px; background:transparent; cursor:pointer;">Bekijk de uitrusting ↓</button>
+        <div id="uitrusting-panel" style="display:none; margin-top:16px; border-top:1px solid rgba(255,255,255,.15); padding-top:16px;">
+          <p style="font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:10px;">Basisuitrusting</p>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">🥽</span>
+              <div><strong style="color:white; font-size:.88rem;">Duikbril</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Om onder water te kunnen kijken. Kies er een met klipjes zodat de snorkel makkelijk los- en vastgemaakt kan worden.</span></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">🌬️</span>
+              <div><strong style="color:white; font-size:.88rem;">Snorkel</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Om te ademen aan de oppervlakte. Moet afneembaar zijn van de bril.</span></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">🏋️</span>
+              <div><strong style="color:white; font-size:.88rem;">Loodgordel</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Voorkomt dat je te veel drijft. Onze instructeurs adviseren je graag bij de keuze.</span></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">🦶</span>
+              <div><strong style="color:white; font-size:.88rem;">Vinnen</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Essentieel voor efficiënt bewegen onder water. Kies een paar dat goed en comfortabel past.</span></div>
+            </div>
+          </div>
+          <p style="font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:10px;">Buitenwater uitrusting</p>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">🤿</span>
+              <div><strong style="color:white; font-size:.88rem;">Duikpak (wetsuit)</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Beschermt tegen het koudere buitenwater. Alle maten aanwezig bij de vereniging.</span></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">🧤</span>
+              <div><strong style="color:white; font-size:.88rem;">Schoenen &amp; handschoenen</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Bescherming bij buitenduiken.</span></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">🎽</span>
+              <div><strong style="color:white; font-size:.88rem;">Trimvest</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Hiermee regel je je drijfvermogen onder water. Alle maten bij de club aanwezig.</span></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">🫧</span>
+              <div><strong style="color:white; font-size:.88rem;">Duikcilinder &amp; automatenset</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Voorziet je van lucht onder water. Vulling wordt door de vereniging verzorgd.</span></div>
+            </div>
+          </div>
+          <p style="font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(255,255,255,.5); margin-bottom:10px;">Geavanceerd</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">⌚</span>
+              <div><strong style="color:white; font-size:.88rem;">Duikcomputer</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Registreert duur en diepte van je duiken.</span></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">🧭</span>
+              <div><strong style="color:white; font-size:.88rem;">Kompas</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Voor navigatie onder water.</span></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1.1rem;">📷</span>
+              <div><strong style="color:white; font-size:.88rem;">Onderwatercamera</strong><br/><span style="font-size:.8rem; color:rgba(255,255,255,.6);">Leg planten en dieren onder water vast.</span></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="training-card fade-up">
         <div class="training-card-icon">🌅</div>
@@ -1013,6 +1068,15 @@
 
 <!-- ===== SCRIPTS ===== -->
 <script>
+  // Uitrusting toggle
+  function toggleUitrusting() {
+    const panel = document.getElementById('uitrusting-panel');
+    const btn = document.getElementById('uitrusting-btn');
+    const open = panel.style.display === 'none';
+    panel.style.display = open ? 'block' : 'none';
+    btn.textContent = open ? 'Verberg uitrusting ↑' : 'Bekijk de uitrusting ↓';
+  }
+
   // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
